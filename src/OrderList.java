@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * Class for managing orders. The class holds a protected array list of orders.
- * @author 
+ * @author Michael Sorhaindo
  *
  */
 public class OrderList {
@@ -10,7 +10,7 @@ public class OrderList {
 		 protected ArrayList<Order> completedList;
 	
 	 /**
-	  * Constructor with no arguments, create a new empty array list of orders.
+	  * Constructor with no arguments, creates a new empty array list of orders.
 	  */
 	public OrderList(){
 		ordersList = new ArrayList<Order>();
@@ -21,7 +21,7 @@ public class OrderList {
 	  * Add a new order to the list and print out the information. 
 	  * method will notify cooks waiting to get orders if the list
 	  * is currently empty.
-	  * @param name of the cashier
+	  * @param cashierName The name of the cashier who is placing the Order.
 	  */
 	synchronized public Order addOrder(String cashierName)
 	{
@@ -35,7 +35,7 @@ public class OrderList {
 	  * Removing an order from the list. The thread accessing this method  
 	  * is put on wait if the current list is empty. It will return information
 	  * about the order being removed.
-	  * @param name of the cook requesting order
+	  * @param cookName The name of the cook requesting order
 	  * @return formatted String containing the information of the order.
 	  */
 	synchronized public Order removeOrder(String cookName)
@@ -46,7 +46,7 @@ public class OrderList {
 			}
 			catch(Exception e)
 			{
-				//TODO
+				System.err.println("Cook failed to execute wait()");
 			}
 		}
 		completedList.add(ordersList.get(0));
